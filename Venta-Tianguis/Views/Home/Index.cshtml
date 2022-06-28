@@ -1,0 +1,44 @@
+﻿
+@model ListingsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+   <h1 class="display-4">Venta de Ropa Tianguis</h1> 
+   <a asp-controller="Seller" asp-action="Index">Ingreso Vendedor</a>
+   <div class="container container-md">
+       <table class="table table-primary table-striped">
+           <thead>
+               <tr>
+                   <th scope="col">Descripción</th>
+                   <th scope="col">Precio</th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach(var item in Model.Listings)
+               {
+               <tr>
+                   <td class="text-start"><a asp-action="Detail" asp-route-id="@item.id">@item.title</a></td>
+                   <td class="text-end">@item.price.ToString("c")</td>
+               </tr>
+               }
+               <tr>
+                   <td class="text-start"><a asp-action="Detail" asp-route-id="146">Pantalón Caballero</a></td>
+                   <td class="text-end">$60.00</td>
+               </tr>
+           </tbody>
+       </table>
+       <div class="col">
+           @if(Model.page > 1)
+            {
+                <a asp-action="Page" asp-route-pagNum="@(Model.page-1)">Pagina Anterior</a>
+            }
+            Pagina @Model.page de @Model.TotalPages
+            @if (Model.page < Model.TotalPages)
+            {
+                <a asp-action="Page" asp-route-pagNum = "@(Model.page+1)">Siguiente</a>
+            }
+        </div>
+   </div>
+</div>

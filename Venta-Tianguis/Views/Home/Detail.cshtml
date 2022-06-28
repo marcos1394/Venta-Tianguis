@@ -1,0 +1,32 @@
+﻿@model ListingDetail
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+<h1>Detalles del Producto</h1>
+<hr/>
+<div class="container container-md">
+    <div class="row">
+        <div class="col-auto fw-bold">Vendedor</div>
+    <div class="col-auto">
+        <a href="mailto:@Model.SellerEmail">
+            @Model.Seller
+        </a>
+    </div>
+    <div class="col">Producto Subido el día: @Model.ListingDate.ToShortDateString()</div>
+    <div class="row">
+        <div class="col">@Model.Title</div>
+    </div>
+    <div class="row">
+        <div class="col-auto fw-bold">Descripción</div>
+    </div>
+    <div class="col-auto">
+       @Model.Description
+    </div>
+    <div class="row mt-4">
+        <div class="col fw-bold">@Model.Price.ToString("c")</div>
+    </div>
+    </div>
+</div>

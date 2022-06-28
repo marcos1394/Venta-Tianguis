@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Home Vendedor";
+}
+
+<h1>Centro del Vendedor</h1>
+<div>
+    <p>Marcos Sandoval Ruiz - marcosbancaprepa@gmail.com</p>
+</div>
+<br/>
+
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">100</th>
+                <td>Pantalon de Mezclilla</td>
+                <td>$40.00</td>
+                <td><a asp-action="edit" asp-route-id="100">Editar</a>
+                    <a asp-action="Delete" asp-route-id="100">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a asp-action="addnew">Agregar nuevo producto</a>
+</div>
