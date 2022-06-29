@@ -12,8 +12,8 @@ public class Venta_TianguisUser : IdentityUser
 {
 
     [Required, PersonalData, MaxLength(60)]
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 
-    public ICollection<Item> Items { get; set; } = new List<Item>();    
+    public virtual ICollection<Item> Items { get; set; } = new List<Item>();    
 }
 

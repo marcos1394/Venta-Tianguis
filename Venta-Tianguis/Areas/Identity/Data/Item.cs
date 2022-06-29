@@ -15,7 +15,7 @@ namespace Venta_Tianguis.Areas.Identity.Data
             Price = price;
         }
         public int Id { get; set; }
-        public Venta_TianguisUser User { get; set; }
+        public virtual Venta_TianguisUser User { get; set; }
 
         public DateTime ListingDate { get; set; }
         [MaxLength(255)]

@@ -13,13 +13,14 @@ namespace Venta_Tianguis.Controllers
         string UserEmail => User?.Identity?.Name ?? string.Empty;
 
         
-        public Seller(IGarageSaleService svc)
+        public Seller(IHttpContextAccessor accesor, IGarageSaleService svc)
         {
             this.svc = svc;
+            svc.UserEmail = accesor?.HttpContext?.User?.Identity?.Name ?? "";
         }
         public IActionResult Index(IEnumerable<ListingSummary> listings)
         {
-            var user = svc.GetUser(UserEmail);
+            var user = svc.GetUser(svc.UserEmail);
             _ = svc.GetUserListings();
             var model = new SellerModel(user.Name, user.Email, (IEnumerable<ListingSummary>?)svc.GetUserListings());
             return View(model);

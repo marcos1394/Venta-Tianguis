@@ -47,7 +47,7 @@ namespace Venta_Tianguis.BusinessSvc
             var q = from item in ctx.Items
                     orderby item.ListingDate descending
                     select new ListingSummary(item.Id, item.Title, item.Price);
-            return q.Skip(page - 1 * 20).Take(20).ToList();
+            return q.Skip(page * 20).Take(20).ToList();
         }
 
         public (string Id, string Name, string Email) GetUser(string email)

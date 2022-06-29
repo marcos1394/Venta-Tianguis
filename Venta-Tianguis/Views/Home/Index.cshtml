@@ -22,11 +22,12 @@
                    <td class="text-start"><a asp-action="Detail" asp-route-id="@item.id">@item.title</a></td>
                    <td class="text-end">@item.price.ToString("c")</td>
                </tr>
-               }
+               
                <tr>
-                   <td class="text-start"><a asp-action="Detail" asp-route-id="146">Pantalón Caballero</a></td>
-                   <td class="text-end">$60.00</td>
+                   <td class="text-start"><a asp-action="Detail" asp-route-id="@item.id">@item.title </a></td>
+                   <td class="text-end">@item.price.ToString("c")</td>
                </tr>
+               }
            </tbody>
        </table>
        <div class="col">

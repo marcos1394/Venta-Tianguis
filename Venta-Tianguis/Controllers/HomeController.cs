@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Venta_Tianguis.Areas.Identity.Data;
 using Venta_Tianguis.BusinessSvc;
 using Venta_Tianguis.Models;
 
@@ -26,6 +28,49 @@ namespace Venta_Tianguis.Controllers
             return View(model);
         }
 
+
+        public IActionResult SeedDb(UserManager<Venta_TianguisUser> userManager,
+            [FromServices]IPasswordHasher<Venta_TianguisUser> hasher) 
+        {
+            Venta_TianguisUser user = new()
+            {
+                FullName = "Marcos Sandoval",
+                Email = "marcosbancaprepa@gmail.com",
+                UserName = "marcosbancaprepa@gmail.com",
+                EmailConfirmed = true,
+            };
+            user.PasswordHash = hasher.HashPassword(user, "Heisenberg1394?");
+            user.Items = new List<Item>()
+            {
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"},
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"},
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"}
+            };
+
+            userManager.CreateAsync(user).Wait();
+            user = new()
+            {
+                FullName = "Xanizzin Rivera",
+                Email = "cotariverax@gmail.com",
+                UserName = "cotariverax@gmail.com",
+                EmailConfirmed = true,
+            };
+            user.PasswordHash = hasher.HashPassword(user, "Xanizzin123");
+            user.Items = new List<Item>()
+            {
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"},
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"},
+                new Item() {ListingDate = DateTime.Now, Price = 2011.90F, Title="Producto Prueba",
+                Description= @"este es un producto de prueba"}
+            };
+            userManager.CreateAsync(user).Wait();
+            return RedirectToAction("Index");
+        }
         public IActionResult Detail(int id)
         {
             var model = svc.GetListing(id);
